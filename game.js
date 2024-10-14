@@ -12,5 +12,15 @@ function computerChoice() {
             return null;
     }
 }
-let playerChoice = prompt("PLAY ROCK PAPER SCISSORS: /nINPUT ANY CHOICE[R P S]", 0);
+function playerChoice(input) {
+    switch(input) {
+        case 'R':
+            return "ROCK";
+        case 'P':
+            return "PAPER";
+        case 'S':
+            return "SCISSORS";
+    }
+}
+
 console.log(playerChoice);
