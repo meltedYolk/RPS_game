@@ -1,32 +1,31 @@
 let playerScore = 0;
 let computerScore = 0;
-
+const ROCK = 1, PAPER = 2, SCISSORS = 3;
 function computerChoice() {
-    let num = parseInt(Math.random() * (3 - 0) + 1);   //random * (max-min) + 1
-    switch(num) {
-        case 1:
-            return "ROCK";
-        case 2:
-            return "PAPER";
-        case 3:
-            return "SCISSORS";
-        default:
-            console.log("error in comp choice");
-            return null;
-    }
+    return parseInt(Math.random() * (3 - 0) + 1);
 }
 function playerChoice(input) {
+    input = input.toLowerCase();
     switch(input) {
-        case 'R':
-            return "ROCK";
-        case 'P':
-            return "PAPER";
-        case 'S':
-            return "SCISSORS";
+        case 'rock':
+            return ROCK
+        case 'paper':
+            return PAPER
+        case 'scis':
+            return SCISSORS
         default:
             console.log("player choice error");
             return null;
     }
 }
+/*function playRound(humanChoice, computerChoice) {
+    compare humanchoice to computerChoice, 
+    if human win
+        inc humanScore
+        display win message
+    else comp win
+        inc computerScore
+        display lose message
 
-console.log(playerChoice);
+    
+}*/
