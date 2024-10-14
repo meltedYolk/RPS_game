@@ -1,3 +1,6 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function computerChoice() {
     let num = parseInt(Math.random() * (3 - 0) + 1);   //random * (max-min) + 1
     switch(num) {
@@ -20,6 +23,9 @@ function playerChoice(input) {
             return "PAPER";
         case 'S':
             return "SCISSORS";
+        default:
+            console.log("player choice error");
+            return null;
     }
 }
 
