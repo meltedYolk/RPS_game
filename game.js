@@ -56,4 +56,22 @@ function playRound(humanChoice, computerChoice) {
     displayScore();
 }
 
-playRound(ROCK, SCISSORS); // should win
+// receives # of rounds, 
+// each round prompt input and play a round
+// after rounds completed, determine winner
+function playGame(num = 5) {
+    let playerInput;
+    for(num; num != 0; --num) {
+        playerInput = prompt("Rock, Paper, or Scis? (Type one of the three)");
+        playRound(playerChoice(playerInput), computerChoice());
+    }
+
+    if(playerScore > computerScore) 
+        console.log("you win the RPS war!");
+    else if (playerScore < computerScore)
+        console.log("you losttttt the RPS warrr... to a BOT!!!");
+    else // tie
+        console.log("you tied against a bot. basically an L");
+}
+
+playGame();
