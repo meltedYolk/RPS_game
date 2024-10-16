@@ -1,26 +1,11 @@
 let playerScore = 0;
 let computerScore = 0;
-const ROCK = 1, PAPER = 2, SCISSORS = 3;
+const ROCK = 1, PAPER = 2, SCISSORS = 3, 
+      FINAL_SCORE = 5;
 
 // returns int 1-3 represent choices
 function computerChoice() {
     return parseInt(Math.random() * (3 - 0) + 1);
-}
-
-// returns int 1-3 represent choices, receive user string input
-function playerChoice(input) {
-    input = input.toLowerCase();
-    switch(input) {
-        case 'rock':
-            return ROCK
-        case 'paper':
-            return PAPER
-        case 'scis':
-            return SCISSORS
-        default:
-            console.log("player choice error");
-            return null;
-    }
 }
 
 // display score
@@ -54,24 +39,36 @@ function playRound(humanChoice, computerChoice) {
     }
     console.log(message);
     displayScore();
+    checkWin();
 }
 
-// receives # of rounds, 
-// each round prompt input and play a round
-// after rounds completed, determine winner
-function playGame(num = 5) {
-    let playerInput;
-    for(num; num != 0; --num) {
-        playerInput = prompt("Rock, Paper, or Scis? (Type one of the three)");
-        playRound(playerChoice(playerInput), computerChoice());
+// checks if player or computer has won by reaching FINAL_SCORE
+function checkWin() {
+    if(playerScore >= FINAL_SCORE) {
+        console.log("YOU WON THE WAR CHIEF. GAME RESET.");
+        playerScore = 0; computerScore = 0;
     }
-
-    if(playerScore > computerScore) 
-        console.log("you win the RPS war!");
-    else if (playerScore < computerScore)
-        console.log("you losttttt the RPS warrr... to a BOT!!!");
-    else // tie
-        console.log("you tied against a bot. basically an L");
+    else if(computerScore >= FINAL_SCORE) {
+        console.log("you lost you LOSERRRR!! GAME RESET.");
+        playerScore = 0; computerScore = 0;
+    }
 }
 
-playGame();
+// makes each button play a round on click, choice based on button
+function startGame() {
+    const rockBtn = document.querySelector(".rockBtn");
+    const paperBtn = document.querySelector(".paperBtn");
+    const scisBtn = document.querySelector(".scisBtn");
+
+    rockBtn.addEventListener("click", () => {
+        playRound(ROCK, computerChoice());
+    });
+    paperBtn.addEventListener("click", () => {
+        playRound(PAPER, computerChoice());
+    });
+    scisBtn.addEventListener("click", () => {
+        playRound(SCISSORS, computerChoice());
+    });
+}
+
+startGame();
